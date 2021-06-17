@@ -1,0 +1,26 @@
+{
+    "plugin": "CobaltBlog",
+    "name": "Cobalt Blog",
+    "description": "A simple markdown blog using Cobalt's Database Driver",
+    "settings": {
+        "CobaltBlog_public_path": {
+            "default": "/blog"
+        },
+        "CobaltBlog_public_name": {
+            "default": "Blog"
+        },
+        "CobaltBlog_navigation_groups": {
+            "default": [
+                "main_navigation"
+            ]
+        }
+    },
+    "permissions": {
+        "CobaltBlog_allow_editing": {
+            "groups": "Blog",
+            "label": "Allowed to post new and edit existing blog posts",
+            "dangerous": false,
+            "default": false
+        }
+    }
+}
