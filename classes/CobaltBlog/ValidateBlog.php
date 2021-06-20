@@ -43,7 +43,6 @@ class ValidateBlog extends \Validation\Validate {
     }
 
     function published($value) {
-        // $this->time_input_to_milliseconds($this->__to_validate['publish_time']);
         $time = $this->__to_validate['publish_time'];
         return $this->make_date("$value $time");
     }

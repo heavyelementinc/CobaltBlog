@@ -43,9 +43,9 @@ class Blog extends \Drivers\Database {
     }
 
     final private function noBlogsIndex() {
-        return "<h1>No posts yet.</h1>
+        return "<section class='CobaltBlog'><h1>No posts yet.</h1>
         <article>
         <p>But don't worry! There'll be some cool stuff here, soon!</p>
-        </article>";
+        </article></section>";
     }
 }

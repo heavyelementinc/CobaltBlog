@@ -32,6 +32,9 @@
         },
         "CobaltBlog_index_limit": {
             "default": 5
+        },
+        "CobaltBlog_main_index_title": {
+            "default": "Blog Home"
         }
     },
     "permissions": {

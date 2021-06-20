@@ -11,7 +11,7 @@ class CobaltBlog {
         $opts['sort'] = $this->getSort($opts['sort']);
         $result = $this->blog->getIndex($opts['page'] ?? 0, $opts['sort'] ?? -1);
         add_vars([
-            'title' => "Blog",
+            'title' => app("CobaltBlog_main_index_title"),
             'main' => $result
         ]);
         set_template("CobaltBlog/index.html");
@@ -32,7 +32,7 @@ class CobaltBlog {
         $opts = associative_array_helper($options, ['page', 'sort']);
         $result = $this->blog->getAdminIndex($opts['page'] ?? 0, $opts['sort'] ?? -1);
         add_vars([
-            'title' => "Blog",
+            'title' => "Cobalt Blog Admin Index",
             'main' => $result
         ]);
         set_template("CobaltBlog/admin-index.html");
