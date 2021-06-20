@@ -1,0 +1,106 @@
+<form-request id="CobaltBlog--form" method="PUT" action="/api/v1{{app.CobaltBlog_update_path}}/update/{{article._id}}">
+    <h1><input name="title" value="{{article.title}}" placeholder="Post title" autocomplete="none"></h1>
+    <section class="body-content cobalt-admin--fieldset">
+        <textarea name="body_content"
+            placeholder="The main content of your post goes here.">{{article.body_content}}</textarea>
+    </section>
+
+    <aside class='CobaltBlog--aside cobalt-admin--fieldset'>
+        <fieldset>
+            <div style="font-style: italic; width:100%">
+                Created <date-span value="{{article.created}}" format="long"></date-span>
+                <div class="error"></div>
+            </div>
+            <div>
+                <label>Publication Date</label>
+                <input type="date" name="published" value='@mongo_date("$article.published");'>
+                <input type="time" name="publish_time" value='@mongo_date("$article.published","H:i");'>
+            </div>
+            <div>
+                <label>Publication Status</label>
+                <input-switch type="is_published" value='{{@article.is_published}}'></input-switch>
+            </div>
+        </fieldset>
+        <div>
+            <input type="submit" value="Save">
+        </div>
+    </aside>
+
+    <aside class='CobaltBlog--meta cobalt-admin--fieldset'>
+
+        <fieldset>
+            <label>URL Slug</label>
+            <input readonly="readonly" name="url_safe_name" value="{{article.url_safe_name}}"
+                placeholder="url-safe-name" style="display:block; width:100%; box-sizing: border-box;">
+        </fieldset>
+        <fieldset>
+            <label>Shareable Link (Unpublished content)</label>
+            <copy-span value="{{server.domain}}{{app.CobaltBlog_public_path}}/{{article._id}}"></copy-span>
+        </fieldset>
+    </aside>
+
+</form-request>
+
+<style>
+    #CobaltBlog--form .form-request--actual {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(5, 15vh);
+        gap: 20px;
+    }
+
+    #CobaltBlog--form h1 {
+        width: 100%;
+        box-sizing: border-box;
+        grid-column: 1 / span 3;
+        grid-row: 1;
+    }
+
+    #CobaltBlog--form h1>input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #CobaltBlog--form section.body-content {
+        grid-column: 1 / span 3;
+        grid-row: 2 / span 4;
+    }
+
+    section.body-content textarea {
+        display: block;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        margin: 0 auto;
+        border: none;
+    }
+
+    .CobaltBlog--aside {
+        grid-column: 4;
+        grid-row: 1 / span 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .CobaltBlog--meta {
+        grid-column: 4;
+        grid-row: 4 / span auto;
+    }
+
+    input[type="submit"] {
+        color: white;
+        background-color: var(--project-color-acknowledge);
+        border: 2px solid transparent;
+        width: 100%;
+    }
+
+    input[type="submit"]:hover {
+        border: 2px solid black;
+    }
+
+    copy-span {
+        width: 100%;
+
+    }
+</style>

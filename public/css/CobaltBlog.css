@@ -1,0 +1,12 @@
+section.CobaltBlog{
+    width:140ch;
+    margin: 0 auto;
+}
+
+section.CobaltBlog header ul {
+    list-style: none;
+}
+
+.CobaltBlog--title {
+    
+}

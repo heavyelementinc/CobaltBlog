@@ -1,9 +1,22 @@
 {
     "plugin": "CobaltBlog",
     "name": "Cobalt Blog",
+    "cobalt_version": "^0.2",
     "description": "A simple markdown blog using Cobalt's Database Driver",
+    "js-packages": [
+        "CobaltBlog-webcomponents.js"
+    ],
+    "css-packages": [
+        "CobaltBlog.css"
+    ],
     "settings": {
         "CobaltBlog_public_path": {
+            "default": "/blog"
+        },
+        "CobaltBlog_admin_path": {
+            "default": "/blog"
+        },
+        "CobaltBlog_update_path": {
             "default": "/blog"
         },
         "CobaltBlog_public_name": {
@@ -13,11 +26,17 @@
             "default": [
                 "main_navigation"
             ]
+        },
+        "CobaltBlog_collection_name": {
+            "default": "CobaltBlog"
+        },
+        "CobaltBlog_index_limit": {
+            "default": 5
         }
     },
     "permissions": {
         "CobaltBlog_allow_editing": {
-            "groups": "Blog",
+            "group": "Blog",
             "label": "Allowed to post new and edit existing blog posts",
             "dangerous": false,
             "default": false

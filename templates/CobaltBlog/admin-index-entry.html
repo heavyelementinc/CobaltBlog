@@ -1,0 +1,11 @@
+<flex-row>
+    <flex-cell><a href="/admin{{app.CobaltBlog_admin_path}}/edit/{{article.url_safe_name}}">{{article.title}}</a>
+    </flex-cell>
+    <flex-cell>{{author}}</flex-cell>
+    <flex-cell>
+        <date-span value="{{article.published}}"></date-span>
+    </flex-cell>
+    <flex-cell>
+        <date-span value="{{article.created}}"></date-span>
+    </flex-cell>
+</flex-row>
