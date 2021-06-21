@@ -1,14 +1,16 @@
-<section id="{{article.url_safe_name}}" class="CobaltBlog">
+<section id="{{article.url_safe_name}}" class="CobaltBlog CobaltBlog--article-section">
     <header>
         <h1 class="CobaltBlog-header--title">{{!anchor_start}}{{article.title}}{{!anchor_end}}</h1>
+    </header>
+    <article>
+        @from_markdown("$article.body_content");
+    </article>
+    <footer>
         <ul>
             <li class="CobaltBlog-header--author">{{article.author}}</li>
             <li class="CobaltBlog-header--published">
                 <date-span value="{{@article.published}}" format="long"></date-span>
             </li>
         </ul>
-    </header>
-    <article>
-        @from_markdown("$article.body_content");
-    </article>
+    </footer>
 </section>

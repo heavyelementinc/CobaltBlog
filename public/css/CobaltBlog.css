@@ -3,10 +3,57 @@ section.CobaltBlog{
     margin: 0 auto;
 }
 
-section.CobaltBlog header ul {
+section.CobaltBlog footer{
+    margin: 0;
+}
+
+section.CobaltBlog footer ul {
     list-style: none;
+    background: var(--project-calendar-cell-other-bg);
+    display: flex;
+    flex-grow: 1;
+    padding: .4rem;
+    justify-content: center;
 }
 
 .CobaltBlog--title {
     
+}
+
+nav.CobaltBlog--index-chrome {
+    /* position:sticky;
+    bottom: 0; */
+    width:140ch;
+    box-sizing: border-box;
+    /* background:white; */
+    display: flex;
+    justify-content:space-between;
+    margin: 0 auto;
+}
+
+nav a.CobaltBlog--navigation-link{
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.CobaltBlog table {
+    border: var(--project-color-table-border);
+    width:100%;
+}
+
+.CobaltBlog :is(td, th){
+    border: var(--project-color-table-border);
+    padding: .4rem;
+}
+
+.CobaltBlog tr :is(td, th){
+    background: var(--project-color-table-bg-even)
+}
+
+.CobaltBlog tr:nth-of-type(odd) :is(td, th){
+    background: var(--project-color-table-bg-odd);
+}
+
+.CobaltBlog thead tr th{
+    background: var(--project-color-table-bg-odd);
 }

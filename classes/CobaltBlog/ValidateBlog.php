@@ -12,6 +12,7 @@ class ValidateBlog extends \Validation\Validate {
             'url_safe_name' => [],
             'author' => [],
             'published' => [],
+            'is_published' => [],
             'body_content' => []
         ];
     }
@@ -45,6 +46,11 @@ class ValidateBlog extends \Validation\Validate {
     function published($value) {
         $time = $this->__to_validate['publish_time'];
         return $this->make_date("$value $time");
+    }
+
+    function is_published($value) {
+        if (!is_bool($value)) throw new ValidationIssue("Must be a boolean value");
+        return $value;
     }
 
     function body_content($value) {

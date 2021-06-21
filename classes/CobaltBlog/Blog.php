@@ -4,6 +4,13 @@ namespace CobaltBlog;
 
 class Blog extends \Drivers\Database {
 
+    final public function public_query($date = null) {
+        return [
+            'published' => ['$lte' => $this->__date()],
+            'is_published' => true
+        ];
+    }
+
     public function get_collection_name() {
         return app("CobaltBlog_collection_name");
     }
@@ -16,9 +23,8 @@ class Blog extends \Drivers\Database {
         return $this->findOne(['_id' => $this->__id($id)]);
     }
 
-    final public function getAdminIndex($page = 0, $sort = -1) {
-        $limit = app("CobaltBlog_index_limit");
-        $result = $this->find([], ['skip' => $page * $limit, 'sort' => ['published' => $sort, 'date' => $sort]]);
+    final public function getAdminIndex($page, $limit, $sort = -1) {
+        $result = $this->find([], ['skip' => $page * $limit, 'limit' => $limit, 'sort' => ['published' => $sort, 'date' => $sort]]);
         $html = "";
         foreach ($result as $article) {
             $html .= with("CobaltBlog/admin-index-entry.html", ['article' => $article]);
@@ -26,9 +32,17 @@ class Blog extends \Drivers\Database {
         return $html;
     }
 
-    final public function getIndex($page = 0, $sort = -1) {
-        $limit = app("CobaltBlog_index_limit");
-        $result = $this->find([], ['skip' => $page * $limit, 'sort' => ['published' => $sort]]);
+    final public function getIndex($page = 0, $limit, $sort = -1) {
+        $result = $this->find(
+            $this->public_query(),
+            [
+                'skip' => $page * $limit,
+                'limit' => $limit,
+                'sort' => [
+                    'published' => $sort
+                ]
+            ]
+        );
 
         $html = "";
         foreach ($result as $article) {
@@ -40,6 +54,12 @@ class Blog extends \Drivers\Database {
         }
         if (!$html) return $this->noBlogsIndex();
         return $html;
+    }
+
+    final public function getCount($mode = 'public') {
+        $filter = [];
+        if ($mode === "public") $filter = $this->public_query();
+        return $this->count($filter);
     }
 
     final private function noBlogsIndex() {

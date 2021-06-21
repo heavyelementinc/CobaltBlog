@@ -1,16 +1,20 @@
-<form-request id="CobaltBlog--form" method="PUT" action="/api/v1{{app.CobaltBlog_update_path}}/update/{{article._id}}">
-    <h1><input name="title" value="{{article.title}}" placeholder="Post title" autocomplete="none"></h1>
+<form-request id="CobaltBlog--form" method="PUT" action="/api/v1{{app.CobaltBlog_update_path}}/update/{{article._id}}"
+    success-message="Your changes were saved.">
+    <div>
+        <input name="title" value="{{article.title}}" placeholder="Post title" autocomplete="none">
+        <div style="font-style: italic; width:100%">
+            Created <date-span value="{{article.created}}" format="long"></date-span>
+        </div>
+        <div class="error"></div>
+    </div>
     <section class="body-content cobalt-admin--fieldset">
         <textarea name="body_content"
             placeholder="The main content of your post goes here.">{{article.body_content}}</textarea>
+
     </section>
 
     <aside class='CobaltBlog--aside cobalt-admin--fieldset'>
         <fieldset>
-            <div style="font-style: italic; width:100%">
-                Created <date-span value="{{article.created}}" format="long"></date-span>
-                <div class="error"></div>
-            </div>
             <div>
                 <label>Publication Date</label>
                 <input type="date" name="published" value='@mongo_date("$article.published");'>
@@ -18,7 +22,7 @@
             </div>
             <div>
                 <label>Publication Status</label>
-                <input-switch type="is_published" value='{{@article.is_published}}'></input-switch>
+                <input-switch name="is_published" checked='{{article.is_published}}'></input-switch>
             </div>
         </fieldset>
         <div>
@@ -35,7 +39,7 @@
         </fieldset>
         <fieldset>
             <label>Shareable Link (Unpublished content)</label>
-            <copy-span value="{{server.domain}}{{app.CobaltBlog_public_path}}/{{article._id}}"></copy-span>
+            <copy-span value="{{server.domain}}{{app.CobaltBlog_public_path}}/preview/{{article._id}}"></copy-span>
         </fieldset>
     </aside>
 
@@ -49,14 +53,14 @@
         gap: 20px;
     }
 
-    #CobaltBlog--form h1 {
+    #CobaltBlog--form div {
         width: 100%;
         box-sizing: border-box;
         grid-column: 1 / span 3;
         grid-row: 1;
     }
 
-    #CobaltBlog--form h1>input {
+    #CobaltBlog--form div>input {
         width: 100%;
         box-sizing: border-box;
     }
@@ -97,6 +101,10 @@
 
     input[type="submit"]:hover {
         border: 2px solid black;
+    }
+
+    textarea {
+        font-family: monospace;
     }
 
     copy-span {
