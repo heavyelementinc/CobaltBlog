@@ -36,6 +36,8 @@ nav a.CobaltBlog--navigation-link{
     font-size: 1.2em;
 }
 
+
+
 .CobaltBlog table {
     border: var(--project-color-table-border);
     width:100%;
@@ -56,4 +58,16 @@ nav a.CobaltBlog--navigation-link{
 
 .CobaltBlog thead tr th{
     background: var(--project-color-table-bg-odd);
+}
+
+@media only screen and (max-width:900px){
+    section.CobaltBlog.CobaltBlog--article-section{
+        width: 100vw;
+        padding: 5vw;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+    nav.CobaltBlog--index-chrome {
+        width: 100vw;
+    }
 }
